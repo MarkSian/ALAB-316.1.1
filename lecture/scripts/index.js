@@ -25,3 +25,9 @@ menuLinks.forEach(link => {
     topMenuEl.appendChild(a);
 });
 // Part 4: Save code for next lab.
+
+// Part 5: Creating the Submenu
+const subMenuEl = document.getElementById("sub-menu");
+subMenuEl.style.height = "100%";
+subMenuEl.style.backgroundColor = "var(--sub-menu-bg)";
+subMenuEl.classList.add("flex-around");
