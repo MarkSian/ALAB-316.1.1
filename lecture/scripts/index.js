@@ -31,3 +31,10 @@ const subMenuEl = document.getElementById("sub-menu");
 subMenuEl.style.height = "100%";
 subMenuEl.style.backgroundColor = "var(--sub-menu-bg)";
 subMenuEl.classList.add("flex-around");
+
+// Part 6: Adding Menu Interaction
+const topMenuLinks = topMenuEl.querySelectorAll("a");
+topMenuEl.addEventListener("click", function (event) {
+    event.preventDefault();
+
+});
