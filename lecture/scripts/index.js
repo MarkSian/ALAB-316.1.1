@@ -57,15 +57,61 @@ topMenuEl.addEventListener("click", function (event) {
     console.log(event.target.textContent);
 
 });
-// Part 7: Adding Submenu Interaction
-//Helper Function to build submenu
-function buildSubmenu(subLinks) {
-    subMenuEl.innterHTML = "";
 
-    subLinks.foreEach(link => {
+// Part 7: Adding Submenu Interaction
+// Helper function to build the submenu
+function buildSubMenu(subLinks) {
+    // Clear current contents of subMenuEl
+    subMenuEl.innerHTML = "";
+
+    // Iterate over subLinks and create <a> elements
+    subLinks.forEach(link => {
         let a = document.createElement("a");
         a.href = link.href;
         a.textContent = link.text;
-        subMenuEl.appencChild(a);
-    })
+        subMenuEl.appendChild(a);
+    });
 }
+
+// Updated event listener for topMenuEl
+topMenuEl.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    if (event.target.tagName !== "A") return;
+
+    console.log(event.target.textContent);
+
+    // Toggle "active" class
+    if (event.target.classList.contains("active")) {
+        event.target.classList.remove("active");
+        subMenuEl.style.top = "0"; // Hide submenu
+        return;
+    }
+    topMenuLinks.forEach(link => link.classList.remove("active"));
+
+    event.target.classList.add("active");
+
+    const linkObj = menuLinks.find(link => link.text === event.target.textContent);
+
+    if (linkObj && linkObj.subLinks) {
+        buildSubMenu(linkObj.subLinks);
+        subMenuEl.style.top = "100%";
+    } else {
+        subMenuEl.style.top = "0";
+    }
+});
+
+// Event listener for subMenuEl
+subMenuEl.addEventListener("click", function (event) {
+    event.preventDefault();
+
+    if (event.target.tagName !== "A") return;
+
+    console.log(event.target.textContent);
+
+    subMenuEl.style.top = "0";
+
+    topMenuLinks.forEach(link => link.classList.remove("active"));
+
+    mainEl.innerHTML = `<h1>${event.target.textContent}</h1>`;
+});
