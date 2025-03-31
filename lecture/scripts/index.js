@@ -57,9 +57,15 @@ topMenuEl.addEventListener("click", function (event) {
     console.log(event.target.textContent);
 
 });
+// Part 7: Adding Submenu Interaction
+//Helper Function to build submenu
+function buildSubmenu(subLinks) {
+    subMenuEl.innterHTML = "";
 
-// // Part 7: Adding Submenu Interaction
-// subMenuEl.addEventListener("click", function (event) {
-//     event.preventDefault();
-
-// }
+    subLinks.foreEach(link => {
+        let a = document.createElement("a");
+        a.href = link.href;
+        a.textContent = link.text;
+        subMenuEl.appencChild(a);
+    })
+}
