@@ -37,4 +37,7 @@ const topMenuLinks = topMenuEl.querySelectorAll("a");
 topMenuEl.addEventListener("click", function (event) {
     event.preventDefault();
 
+    if (event.target.tagName !== "A") return;
+    console.log(event.target.textContent);
+
 });
